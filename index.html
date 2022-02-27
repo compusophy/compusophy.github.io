@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html style="background-color:#000000;">
+<head> 
+  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    
+    html {
+    
+    
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 0; /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+    
+    body {
+      box-sizing: border-box;
+      
+      border-radius: 10px;
+      background-color: black;
+      color: white;
+      text-align: center;
+      margin: 0px auto;
+      width: 400px;
+      height: 400px;
+      padding: 0px;
+      display: flex;
+      text-transform: lowercase;
+      flex-direction: column;    
+      font-family: sans-serif;
+      position: absolute;
+      border: 1px solid #ffffff;
+       
+       top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+    }
+    
+    
+    
+    .members-count,
+   
+    .members-list-wrapper{
+      overflow-y: scroll;
+      
+      
+    }
+    
+    .members-list{
+    
+      
+    }
+    
+    
+    
+    
+    
+    .messages {
+      flex-shrink: 1;
+      overflow: auto;
+      position: absolute;
+      top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+                border: 0px solid #ffffff;
+      overflow-y: scroll;
+      width: 160px;
+      height: 216px;
+      
+      text-align: left;
+      
+      font-size: 14px;
+      color: gray;
+      margin: 0;
+    }
+
+    
+    .message .member {
+      display: inline-block;
+     
+      
+    }
+
+    .member {
+      
+      position: relative;
+      font-size: 14px;
+      
+      margin: 0;
+      
+      
+    }
+
+    .message-form {
+      display: flex;
+      flex-shrink: 0;
+      
+      background-color: black;
+      
+      
+      
+      
+      
+    }
+    .message-form__input {
+      flex-grow: 1;
+      width: 176px;
+       height: 36px;
+      margin: 0;
+      
+                text-align: left;
+       border-radius: 10px;
+       position: absolute;
+       padding-left: 20px;
+       top: 100%;
+       left: 0%;
+       -ms-transform: translate(-0%, -100%);
+       transform: translate(-0%, -100%);
+                border: 1px solid #ffffff;
+      font-size: 14px;
+      color: white;
+      background: black;
+      
+      
+      
+      
+      
+    }
+    .message-form__button {
+      width: 80px;
+       height: 40px;
+      margin: 0;
+       text-align: center;
+       border-radius: 10px;
+       position: absolute;
+       border: 1px solid #ffffff;
+        font-size: 14px;
+       top: 100%;
+       left: 100%;
+       -ms-transform: translate(-100%, -100%);
+       transform: translate(-100%, -100%);
+                
+      background-color: black;
+      
+      color: gray;
+      
+    }
+    
+    .message-form__button:hover {
+      
+      color: white;
+      
+      
+    }    
+    .phi-chat{
+     border: 0px solid #ffffff;
+     margin: 0px;
+     
+     
+     padding: 0px;
+      
+   
+    }
+  </style>
+</head>
+  
+
+    
+   
+  
+
+<body>
+  
+    <div style="width: 320px;
+       height: 320px;
+                text-align: center;
+       
+       position: absolute;
+       border-radius: 10px;
+       top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+                border: 0px solid #ffffff;">
+      <div> <div style = "
+        
+        width: 198px;
+       height: 238px;
+                text-align: center;
+       border-radius: 10px;
+       position: absolute;
+       
+       top: 0%;
+       left: 0%;
+       -ms-transform: translate(-0%, -0%);
+       transform: translate(-0%, -0%);
+                border: 1px solid #ffffff;
+        
+        ">
+        
+        <div class="messages"></div></div><div style="
+       
+       width: 78px;
+       height: 78px;
+                text-align: center;
+       border-radius: 10px;
+       position: absolute;
+       
+       top: 0%;
+       left: 100%;
+       -ms-transform: translate(0%, -100%);
+       transform: translate(-100%, 0%);
+                border: 1px solid #ffffff;"
+                                
+                                
+                                ><a href="https://phi.chat/"><img  style="
+       
+       width: 56px;
+       height: 56px;
+                text-align: center;
+       border-radius: 10px;
+       position: absolute;
+       
+       top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+        
+       
+       
+       " id="collective" src="https://gateway.pinata.cloud/ipfs/QmVqXzX2zyNBga2j3eP4qyRLrj79GRDmSeoiuvng7kJdqE" height="56px" width="56px"></img></a></div></div>
+  
+  
+    
+  
+  
+  
+  <form class="message-form" onsubmit="return false;">
+    <input class="message-form__input" placeholder="type something here..." type="text"/>
+    <input  class="message-form__button" value="enter" type="submit"/>
+  </form>
+  
+  <div class="members-list-wrapper" style="width: 200px;
+      width: 78px;
+       height: 118px;
+                text-align: center;
+       border-radius: 10px;
+       position: absolute;
+       
+                                        
+       top: 0%;
+       left: 100%;
+       -ms-transform: translate(0%, -0%);
+       transform: translate(-100%, 100%);
+                border: 1px solid #ffffff;">
+  
+  <div class="members-list" style="width: 200px;
+      width: 40px;
+       height: 96px;
+                text-align: center;
+       
+                                   
+                                   
+       position: absolute;
+      
+       top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+                border: 0px solid #ffffff;"><div class="members-count">-</div></div>
+    
+    </div>
+  
+  </div>
+  
+ 
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+</body>
+  
+  
+  <script>
+    
+
+
+const CLIENT_ID = 'LPe0gghICqi1HrRY';
+
+const drone = new ScaleDrone(CLIENT_ID, {
+  data: { // Will be sent out as clientData via events
+    name: getRandomName(),
+    color: getRandomColor(),
+  },
+});
+
+let members = [];
+
+drone.on('open', error => {
+  if (error) {
+    return console.error(error);
+  }
+  console.log('Successfully connected to Scaledrone');
+
+  const room = drone.subscribe('observable-room');
+  room.on('open', error => {
+    if (error) {
+      return console.error(error);
+    }
+    console.log('Successfully joined room');
+  });
+
+  room.on('members', m => {
+    members = m;
+    updateMembersDOM();
+  });
+
+  room.on('member_join', member => {
+    members.push(member);
+    updateMembersDOM();
+  });
+
+  room.on('member_leave', ({id}) => {
+    const index = members.findIndex(member => member.id === id);
+    members.splice(index, 1);
+    updateMembersDOM();
+  });
+
+  room.on('data', (text, member) => {
+    if (member) {
+      addMessageToListDOM(text, member);
+    } else {
+      // Message is from server
+    }
+  });
+});
+
+drone.on('close', event => {
+  console.log('Connection was closed', event);
+});
+
+drone.on('error', error => {
+  console.error(error);
+});
+
+function getRandomName() {
+  const adjs = ["⚔️","✨","🏹"];
+  const nouns = ["null"];
+  return (
+   nouns[Math.floor(Math.random() * nouns.length)]
+   
+  );
+}
+
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
+}
+
+//------------- DOM STUFF
+
+const DOM = {
+  membersCount: document.querySelector('.members-count'),
+  membersList: document.querySelector('.members-list'),
+  messages: document.querySelector('.messages'),
+  input: document.querySelector('.message-form__input'),
+  form: document.querySelector('.message-form'),
+};
+
+DOM.form.addEventListener('submit', sendMessage);
+
+function sendMessage() {
+  const value = DOM.input.value;
+  if (value === '') {
+    return;
+  }
+  DOM.input.value = '';
+  drone.publish({
+    room: 'observable-room',
+    message: value,
+  });
+}
+
+function createMemberElement(member) {
+  const { name, color } = member.clientData;
+  const el = document.createElement('div');
+  el.appendChild(document.createTextNode(name));
+  el.className = 'member';
+  el.style.color = "gray";
+  return el;
+}
+
+function updateMembersDOM() {
+  DOM.membersCount.innerText = `${members.length} online`;
+  
+  DOM.membersList.innerHTML = '';
+  members.forEach(member =>
+    DOM.membersList.appendChild(createMemberElement(member))
+  );
+}
+
+function createMessageElement(text, member) {
+  const el = document.createElement('div');
+ 
+  el.appendChild(document.createTextNode(text));
+  el.className = 'message';
+  return el;
+}
+
+function addMessageToListDOM(text, member) {
+  const el = DOM.messages;
+  const wasTop = el.scrollTop === el.scrollHeight - el.clientHeight;
+  el.appendChild(createMessageElement(text, member));
+  if (wasTop) {
+    el.scrollTop = el.scrollHeight - el.clientHeight;
+  }
+}
+
+
+   
+    
+  </script>
+</html>
+
