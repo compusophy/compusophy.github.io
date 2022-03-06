@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <script src="https://d3lcc9o79wflkf.cloudfront.net/connect.umd.js"></script>
+  <link rel="stylesheet" href="https://d3lcc9o79wflkf.cloudfront.net/connect.css">
+  
+<script>
+    
+    window.addEventListener("m-authenticated", async (event) => {
+      
+  document.getElementById("wizards2").innerHTML = 699699;
+      
+   const client = event.detail.client;
+
+  const tokens = await client.getNFTsOfOwner({
+    
+  })
+}; 
+                                                      
+  </script>   
+  
+</head>
+<body>
+    <div>
+      <div data-widget="m-oauth-connect"  
+    data-client-id="abbbd39fa49115af1e0ae9de623f5b7e1a36f03796a7229969f311cbd61eace6"  
+    data-app-name="phi.chat"  
+    data-redirect-uri="https://phi.chat"></div>
+  
+      <div id="wizards"><h3>NFT</h3></div>
+      
+  <div id="wizards4"></div>
+  <div id="wizards3"></div>
+  <div id="wizards2">
+    hello2
+    <script>
+    document.getElementById("wizards2").innerHTML = 6996;
+
+      
+      </script>
+    <div id="demo"></div>
+    <div id="demo2"></div>
+      
+     <script>
+       
+       
+document.getElementById("wizards4").innerHTML = "---";
+    
+</script> 
+    
+    
+    
+    
+      
+    <script>
+      
+    document.getElementById("wizards2").innerHTML = 7;
+      
+    window.addEventListener("m-authenticated", async (event) => {
+  
+      document.getElementById("wizards2").innerHTML = 8;
+      
+      const client = event.detail.client;
+
+  const tokens = await client.getNFTsOfOwner({
+    
+  });
+      
+      document.getElementById("wizards2").innerHTML = tokens[0].image;
+      document.getElementById("wizards3").innerHTML = tokens[0].metadata.animation_url;
+      document.getElementById("wizards4").innerHTML = tokens[0].name
+      
+      for (let i = 0; i < tokens.length; i++) {
+  const img = document.createElement("img");
+  img.src = tokens[i].image;
+  img.height = 40;
+  img.width = 40;
+  
+        
+  document.getElementById("wizards").appendChild(img);
+}
+      
+});
+                                                      
+  </script>   
+    
+    
+   
+  </div>
+  
+ 
+</body>
+</html>
