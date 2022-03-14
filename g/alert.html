@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>iframe test</title>
+</head>
 <body>
-<script>alert( 'Hello World' );</script>
+    <iframe src="https://playcanv.as/e/p/w3cOXu3C/" width="500px" height="500px" id='app'></iframe>
+    <button onclick="(function() {
+        var app = document.getElementById('app');
+        app.contentWindow.postMessage('hello', '*');
+    })()">test me </button>
 </body>
-</html> 
+
+</html>
