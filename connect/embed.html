@@ -1,8 +1,142 @@
-<html
+<!DOCTYPE html>
+<html style="width: 400px;
+         height: 400px;">
+  <head>
+  <style> 
+   html {
+     background-color: black;
+         }
+      .frame {
+         box-sizing: border-box;      
+         border-radius: 10px;
+        overflow: hidden;
+         background-color: black;
+         color: white;
+         text-align: center;
+         margin: 0px auto;
+         width: 400px;
+         height: 400px;
+         padding: 0px;
+         display: flex;
+         text-transform: lowercase;
+         flex-direction: column;    
+         font-family: 'Lucida Console', monospace;
+         position: absolute;
+         border: 1px solid rgb(158, 158, 158);     
+         top: 50%;
+         left: 50%;
+         -ms-transform: translate(-50%, -50%);
+         transform: translate(-50%, -50%);
+         font-size:24px;
+         } 
+    
+    .frame.inner1{
+       width: 320px;
+       height: 320px;
+       border: 1px solid rgb(158, 158, 158);     
+    }
+    
+    .frame.inner1.widget{
+       width: 280px;
+       height: 80px;
+      border: 0px solid rgb(158, 158, 158);  
+          
+    }
+    
+   
+    
+   
+    
+    
+    
+    
+    .m-connection-connect-wallet{
+      width: 320px;
+      height: 400px;
+      position:absolute;
+     text-transform: lowercase; 
+      top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
       
-      style="width:400px; height:400px; border-radius: 10px;
-  border: 1px solid rgb(158, 158, 158);background: black; margin: 0;position: absolute;top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"><iframe src="https://phi.chat/connect/index.html" width="400px" height="400px"
-      style="margin: 0;position: absolute;top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);border-radius: 10px;
-  border: 1px solid rgb(158, 158, 158); "
-        ></iframe>
-  </html>
+    }
+    
+    .manifold.connected{
+      width: 280px;
+      height: 280px;
+      position:absolute;
+      left:60px; 
+      top: 68px;
+    }
+    
+    .m-connection.manifold{
+      
+      width:120px;
+    }
+     .m-connection-disconnect-wallet{
+      
+     text-transform: lowercase; 
+      
+      height: 40px;
+      
+      
+    }
+    
+    .frame.inner1.symbol{
+       width: 80px;
+       height: 80px;
+       border: 0px solid rgb(158, 158, 158);        
+      top: 0%;
+       left: 100%;
+       -ms-transform: translate(-0%, -0%);
+       transform: translate(-100%, -0%);
+    }
+    
+    .frame.inner1.symbol.media{
+       width: 40px;
+       height: 40px;
+       border: 1px solid rgb(158, 158, 158);        
+      top: 50%;
+       left: 50%;
+       -ms-transform: translate(-50%, -50%);
+       transform: translate(-50%, -50%);
+      
+    }
+  </style>
+    <script src="https://d3lcc9o79wflkf.cloudfront.net/connect.umd.js">
+    </script>
+    <link rel="stylesheet" href="https://d3lcc9o79wflkf.cloudfront.net/connect.css">
+  </head>
+  <body>
+<div class="frame">
+  
+  <div class="frame inner1">
+    
+<div class="frame inner1 symbol">
+  <img class="frame inner1 symbol media" src="https://phi.chat/connect/phi-connect.gif";>
+        </img> 
+        </div>
+  
+ <div class="frame inner1 widget"> 
+  
+  
+        </div>   
+  </div>
+  </body>
+  
+
+  
+       <div 
+            data-widget="m-oauth-connect"
+            data-client-id="abbbd39fa49115af1e0ae9de623f5b7e1a36f03796a7229969f311cbd61eace6"
+            data-app-name="phi.chat"            
+            data-redirect-uri="https://phi.chat"    
+     >
+    
+        </div>
+ 
+      
+  
+</html>
+  
