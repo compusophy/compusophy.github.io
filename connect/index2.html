@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://connect.manifoldxyz.dev/connect.umd.min.js"></script>
+  <link rel="stylesheet" href="https://connect.manifoldxyz.dev/connect.css">
+  <script>
+    window.addEventListener('m-authenticated', async (event) => {
+      // do something here
+    })
+  </script>
+</head>
+<body>
+<div>
+    <div data-widget="m-oauth-connect" data-client-id="<your clientId>" data-app-name="<your app name>" data-redirect-uri="<your redirectURI>"></div>
+  <div id="wizards"></div>
+</div>
+</body>
+</html>
