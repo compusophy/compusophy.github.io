@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color:black;color:white;font-family:monospace">
+
+<head>
+  <meta charset="UTF-8">
+  <title>value</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<style>
+  .center-cropped {
+    width: 76px;
+    height: 76px;
+    background-size: 76px;
+    vertical-align: middle;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+</style>
+
+<body>
+
+  <div id="collection">collection: many as one
+  </div>
+  <div id="contract">contract: 0x51d84330e9b0be75ed4fef85d61ebc51fc0aa677
+  </div>
+  <br>
+  <div id="collector">
+  </div>
+  <div id="total">
+  </div>
+
+  </div>
+
+  <script>
+    const options = {
+      method: 'GET',
+      url: 'https://deep-index.moralis.io/api/v2/nft/0xe4977ed4b75557d27047cf1cbe94f193951605c7/4/owners',
+      params: {
+        chain: 'eth',
+        format: 'decimal',
+        normalizeMetadata: 'false'
+      },
+      headers: {accept: 'application/json', 'X-API-Key': 'YrYdRop9MNCUGykfw00B1KFEFTE7VKYWGESPFukrLbmh0fHWMc9Z7i35cgELyqB7'}
+    };
+
+    axios
+      .request(options)
+
+      .then(function (response) {
+        console.log(response.data);
+
+        const dump = response.data;
+        var results = dump.result;
+
+        var owner = results[0].owner_of;
+
+        var shell = "<div style=\"display:inline-block\">collector: " + owner + "</div>"
+
+        var varg = document.getElementById("collector");
+        varg.insertAdjacentHTML("afterend", shell);
+
+
+
+
+
+
+        const options2 = {
+          method: 'GET',
+          url: 'https://deep-index.moralis.io/api/v2/0x1430997022e8ccf845af34596ef37f4754983f85/nft?token_addresses%5B0%5D=0x51d84330e9b0be75ed4fef85d61ebc51fc0aa677',
+          params: {
+            chain: 'eth',
+            format: 'decimal',
+            normalizeMetadata: 'false'
+          },
+          headers: {accept: 'application/json', 'X-API-Key': 'YrYdRop9MNCUGykfw00B1KFEFTE7VKYWGESPFukrLbmh0fHWMc9Z7i35cgELyqB7'}
+        };
+
+        axios
+          .request(options2)
+
+          .then(function (response) {
+            console.log(response.data);
+
+            const dump2 = response.data;
+
+            var results2 = dump2.total;
+
+            var shell2 = "<div style=\"display:inline-block\">total: " + results2 + "</div>"
+
+            var varg2 = document.getElementById("total");
+            varg2.insertAdjacentHTML("afterend", shell2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+          })
+
+
+          .catch(function (error) {
+            console.error(error);
+          });
+
+
+
+
+
+
+
+      })
+
+
+      .catch(function (error) {
+        console.error(error);
+      });
+  </script>
+
+</body>
+
+</html>
