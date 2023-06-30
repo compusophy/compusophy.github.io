@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html style="background-color: black; color: white; font-family: monospace;">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>ensentries</title>
+  <link rel="icon" href="https://phi.chat/ensentries/favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: monospace;
+    }
+
+    table {
+      width: 100%;
+      /* Set initial width to 100% of the parent container */
+      max-width: 485px;
+      color: white;
+      table-layout: fixed;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    th,
+    td {
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      padding: 0px;
+    }
+
+    .ens-col {
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .entries-col {
+      text-align: right;
+    }
+
+    .ens-col {
+      min-width: 200px;
+    }
+
+    .page-container {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      display: inline-block;
+      width: 100px;
+      font-family: monospace;
+      padding: 5px;
+      margin-bottom: 10px;
+      background-color: black;
+      color: white;
+    }
+
+    button:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    button:active {
+      cursor: grabbing;
+    }
+
+    .image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .image-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      margin: 10px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    a:active {
+      cursor: grabbing;
+    }
+
+    #countdown-timer {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      margin: 10px;
+      color: gray;
+    }
+
+    @media (max-width: 485px) {
+      table {
+        width: 100%;
+        /* Set width to 100% when window size is smaller than or equal to 485 pixels */
+      }
+    }
+  </style>
+
+  <script>
+    function countdownTimer() {
+      var currentTime = new Date();
+      var targetDate = new Date(currentTime.getFullYear(), 6, 7, 0, 0, 0); // July is month 6 (0-based index)
+
+      // Check if the target date has already passed in the current year
+      if (currentTime.getMonth() > 6 || (currentTime.getMonth() === 6 && currentTime.getDate() > 7)) {
+        targetDate.setFullYear(targetDate.getFullYear() + 1); // Set target date to next year
+      }
+
+      // Calculate the time difference between current time and target time
+      var timeDiff = targetDate.getTime() - currentTime.getTime();
+      if (timeDiff < 0) {
+        // Target time has already passed
+        document.getElementById('countdown-timer').textContent = '00:00:00';
+        return;
+      }
+
+      // Convert time difference to hours, minutes, and seconds
+      var hours = Math.floor(timeDiff / (1000 * 60 * 60)).toString().padStart(2, '0');
+      var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+      var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+      var formattedTime = hours + ':' + minutes + ':' + seconds;
+
+      // Update the countdown timer
+      document.getElementById('countdown-timer').textContent = formattedTime;
+    }
+
+    // Update the countdown timer every second
+    setInterval(countdownTimer, 1000);
+  </script>
+</head>
+
+<body>
+  <div class="image-container">
+    <img src="https://phi.chat/ensentries/icon.png" alt="Image">
+  </div>
+  <h3 id="countdown-timer"></h3>
+  <a href="https://phi.chat/ensentries/">
+    <h3 style=" width:100%;text-align:center;">ensentries</h3>
+  </a>
+  <p style="width:100%;text-align:center;">a collection of collectors</p>
+
+
+  <div class="page-container">
+    <div class="button-container">
+      <button>ens entries</button>
+      <button>addresses</button>
+      <button>live claims</button>
+    </div>
+  </div>
+
+
+  <table>
+    <tr>
+      <th class="ens-col">ens</th>
+      <th class="entries-col">entries</th>
+    </tr>
+    <tr>
+      <td class="ens-col">compusophy.eth</td>
+      <td class="entries-col">1</td>
+    </tr>
+    <tr>
+      <td class="ens-col">fuckyouiwontdowhatyoutellme.eth</td>
+      <td class="entries-col">1</td>
+    </tr>
+  </table>
+</body>
+
+</html>
