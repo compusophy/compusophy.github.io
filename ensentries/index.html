@@ -1,17 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color: black; color: white; font-family: monospace;">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>ensentries</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: monospace;
+    }
+
+    table {
+      width: auto;
+      color: white;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      padding: 0px;
+    }
+
+    .ens-col {
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .entries-col {
+      text-align: right;
+    }
+
+    .ens-col {
+      min-width: 200px;
+    }
+  </style>
 </head>
 
 <body>
-  Hello world - GH
-  <script src="script.js"></script>
-
+  <h3>ensentries</h3> <!-- Changed to h3 -->
+  <table>
+    <tr>
+      <th class="ens-col">ens</th>
+      <th class="entries-col">entries</th>
+    </tr>
+    <tr>
+      <td class="ens-col">compusophy.eth</td>
+      <td class="entries-col">1</td>
+    </tr>
+    <tr>
+      <td class="ens-col">fuckyouiwontdowhatyoutellme.eth</td>
+      <td class="entries-col">1</td>
+    </tr>
+  </table>
 </body>
 
 </html>
