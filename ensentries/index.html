@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>ensentries</title>
+  <title>ensentries - a collection of collectors</title>
   <link rel="icon" href="https://phi.chat/ensentries/favicon.ico" type="image/x-icon">
   <style>
     body {
@@ -60,7 +60,7 @@
 
     button {
       display: inline-block;
-      width: 100px;
+      width: 120px;
       font-family: monospace;
       padding: 5px;
       margin-bottom: 10px;
@@ -163,13 +163,15 @@
   <a href="https://phi.chat/ensentries/">
     <h3 style=" width:100%;text-align:center;">ensentries</h3>
   </a>
-  <p style="width:100%;text-align:center;">a collection of collectors</p>
+  <a href="https://twitter.com/ensentries/" target="_blank">
+    <p style="width:100%;text-align:center;">a collection of collectors</p>
+  </a>
 
 
   <div class="page-container">
     <div class="button-container">
       <button>ens entries</button>
-      <button>addresses</button>
+      <button>eth addresses</button>
       <button>live claims</button>
     </div>
   </div>
@@ -189,6 +191,36 @@
       <td class="entries-col">1</td>
     </tr>
   </table>
+
+  <div id="downloadButtonContainer">
+    <button onclick="downloadCSV()">Download CSV</button>
+  </div>
+
+  <script>
+    function downloadCSV() {
+      var csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += "Name,Email,Phone\n";
+      csvContent += "John Doe,johndoe@example.com,1234567890\n";
+      csvContent += "Jane Smith,janesmith@example.com,0987654321\n";
+
+      var encodedUri = encodeURI(csvContent);
+      var link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "data.csv");
+      document.body.appendChild(link);
+
+      link.click(); // Simulate a click on the link to trigger the download
+      document.body.removeChild(link); // Clean up the link element afterwards
+    }
+  </script>
+
+  <style>
+    #downloadButtonContainer {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+
 </body>
 
 </html>
