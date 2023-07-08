@@ -1,7 +1,7 @@
 // generateImage.js
 document.addEventListener("DOMContentLoaded", function() {
   var imageUrl = "https://phi.chat/ensentries/icon.png";
-  var imageLinkUrl = "https://opensea.io/assets/ethereum/0x51d84330e9b0be75ed4fef85d61ebc51fc0aa677/83";
+  var imageLinkUrl = "https://opensea.io/assets/ethereum/0x46584e06c8da9f67b1b9712c4df6aa897af3a564/1";
   var imageAlt = "Image";
 
   var imageContainer = document.createElement("div");
