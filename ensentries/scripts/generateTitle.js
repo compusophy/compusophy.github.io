@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Create the anchor element for the title link
   const titleLink = document.createElement('a');
-  titleLink.href = '/';
+  titleLink.href = '/ensentries/';
   titleLink.appendChild(title);
   titleLink.addEventListener('click', function(event) {
     // Handle the click event if needed
