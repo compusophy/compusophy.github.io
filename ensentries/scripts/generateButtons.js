@@ -1,9 +1,9 @@
 // generateButtons.js
 document.addEventListener("DOMContentLoaded", function() {
   var buttonsConfig = [
-    { label: "collectors", link: "/collectors/" },
-    { label: "entries", link: "/entries/" },
-    { label: "claims", link: "/claims/" }
+    { label: "collectors", link: "/ensentries/collectors/" },
+    { label: "entries", link: "/ensentries/entries/" },
+    { label: "claims", link: "/ensentries/claims/" }
   ];
 
   var buttonContainer = document.querySelector('.button-container');
