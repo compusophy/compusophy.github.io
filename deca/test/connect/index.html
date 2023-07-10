@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Input Field</title>
+  <style>
+    #container {
+      position: relative;
+    }
+
+    #connectButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    #textInput {
+      resize: both;
+      width: 300px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <button id="connectButton">Connect</button>
+
+    <h1>Text Input Field</h1>
+
+    <textarea id="textInput" placeholder="Enter text here"></textarea>
+
+    <button id="deployButton">Deploy</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+  <script>
+    // Function to handle the connect button click event
+    function handleConnect() {
+      if (typeof window.ethereum !== 'undefined') {
+        if (!window.ethereum.selectedAddress) {
+          // Prompt the user to connect their wallet
+          window.ethereum
+            .request({ method: 'eth_requestAccounts' })
+            .then((accounts) => {
+              console.log('Connected:', accounts[0]);
+              document.getElementById('connectButton').textContent = accounts[0];
+              // You can add further logic here to interact with the connected account
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        } else {
+          console.log('Wallet already connected:', window.ethereum.selectedAddress);
+        }
+      } else {
+        console.log('Web3 not detected!');
+      }
+    }
+
+    // Function to handle the deploy button click event
+    function handleDeploy() {
+      const textInput = document.getElementById('textInput');
+      const contractText = textInput.value.trim();
+      
+      if (contractText.length > 0) {
+        console.log('Deploying contract:', contractText);
+        // Add your contract deployment logic here
+      } else {
+        console.log('Please enter text in the text field.');
+      }
+    }
+
+    // Add event listeners to the connect and deploy buttons
+    document.getElementById('connectButton').addEventListener('click', handleConnect);
+    document.getElementById('deployButton').addEventListener('click', handleDeploy);
+  </script>
+</body>
+</html>
