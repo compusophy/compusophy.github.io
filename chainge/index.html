@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script>
+      const tokenData = {
+        "hash":"0x6a0d259bd4fb907339fd7c65a133083c1e9554f2ca6325b806612c8df6d7df22",
+        "tokenId":"0"
+      }
+    </script>
+    <script>
+
+      function setup() {
+  createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+  background(0);
+
+  translate(width / 2, height / 2);
+
+  const rectHeight = windowHeight * 0.9;
+  const rectWidth = rectHeight * 0.61803;
+  const blackRectWidth = rectWidth * 0.9;
+  const borderWidth = (rectWidth - blackRectWidth) / 2;
+  const blackRectHeight = rectHeight - borderWidth * 2;
+  const cornerRadius = borderWidth;
+  const pictureWidth = blackRectWidth * .610803;
+  const innerOffset = blackRectHeight - pictureWidth / 2;
+
+  fill(255);
+  rect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight, cornerRadius);
+
+  fill(0);
+  rect(-blackRectWidth / 2, -blackRectHeight / 2, blackRectWidth, blackRectHeight);
+
+  fill(255);
+  rect(-pictureWidth / 2, -pictureWidth / 2, pictureWidth, pictureWidth);
+
+}
+
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+    </script>
+    <style type="text/css">
+      html {
+        height: 100%;
+      }
+      body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+</html>
