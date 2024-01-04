@@ -15,7 +15,6 @@
     }
 
     .decision-group button {
-      margin-right: 10px;
       margin-bottom: 5px;
     }
 
@@ -30,33 +29,48 @@
       font-size: larger;
       color: blue;
     }
+
+    /* Style for class/spec buttons to make them 2 buttons wide */
+    #classSpecGroup {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* Creates 2 columns of equal width */
+      gap: 10px;
+      /* Adds space between buttons */
+    }
+
+    #classSpecGroup button {
+      margin-right: 0;
+      /* Remove the right margin for buttons in this group */
+    }
   </style>
 </head>
 
 <body>
 
-  <h2>Class and Spec Selection</h2>
+
 
   <div id="combatStyleGroup" class="decision-group">
-    <label>Combat Style:</label>
+
     <button onclick="selectOption('combatStyle', 'Melee')">Melee</button>
     <button onclick="selectOption('combatStyle', 'Ranged')">Ranged</button>
   </div>
 
   <div id="damageTypeGroup" class="decision-group">
-    <label>Damage Type:</label>
+
     <button onclick="selectOption('damageType', 'Physical')">Physical</button>
     <button onclick="selectOption('damageType', 'Magic')">Magic</button>
   </div>
 
   <div id="strategyGroup" class="decision-group">
-    <label>Strategy:</label>
+
     <button onclick="selectOption('strategy', 'Burst')">Burst</button>
     <button onclick="selectOption('strategy', 'Sustain')">Sustain</button>
   </div>
 
   <div id="classSpecGroup" class="decision-group">
-    <label>Class/Spec:</label>
+
+
     <button onclick="autoSelect('Berserker')">Berserker</button>
     <button onclick="autoSelect('Paladin')">Paladin</button>
     <button onclick="autoSelect('Spellblade')">Spellblade</button>
