@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Class and Spec Selection Tree with p5.js</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    let nodes = [
+      {id: "root", label: "", x: 200, y: 50, selected: false, children: ["melee", "ranged"]},
+      {id: "melee", label: "Melee", x: 120, y: 150, selected: false, children: ["meleePhysical", "meleeMagic"]},
+      {id: "ranged", label: "Ranged", x: 280, y: 150, selected: false, children: ["rangedPhysical", "rangedMagic"]},
+      {id: "meleePhysical", label: "Physical", x: 60, y: 250, selected: false, children: ["meleePhysicalBurst", "meleePhysicalSustain"]},
+      {id: "meleeMagic", label: "Magic", x: 180, y: 250, selected: false, children: ["meleeMagicBurst", "meleeMagicSustain"]},
+      {id: "rangedPhysical", label: "Physical", x: 220, y: 250, selected: false, children: ["rangedPhysicalBurst", "rangedPhysicalSustain"]},
+      {id: "rangedMagic", label: "Magic", x: 340, y: 250, selected: false, children: ["rangedMagicBurst", "rangedMagicSustain"]},
+      {id: "meleePhysicalBurst", label: "Burst", x: 20, y: 350, selected: false, children: []},
+      {id: "meleePhysicalSustain", label: "Sustain", x: 100, y: 350, selected: false, children: []},
+      {id: "meleeMagicBurst", label: "Burst", x: 160, y: 350, selected: false, children: []},
+      {id: "meleeMagicSustain", label: "Sustain", x: 200, y: 350, selected: false, children: []},
+      {id: "rangedPhysicalBurst", label: "Burst", x: 200, y: 350, selected: false, children: []},
+      {id: "rangedPhysicalSustain", label: "Sustain", x: 240, y: 350, selected: false, children: []},
+      {id: "rangedMagicBurst", label: "Burst", x: 300, y: 350, selected: false, children: []},
+      {id: "rangedMagicSustain", label: "Sustain", x: 380, y: 350, selected: false, children: []}
+    ];
+
+    function setup() {
+      createCanvas(400, 400);
+    }
+
+    function draw() {
+      background(255);
+      drawTree();
+    }
+
+    function drawTree() {
+      // Draw connections
+      stroke(0);
+      nodes.forEach(node => {
+        node.children.forEach(childId => {
+          let child = nodes.find(n => n.id === childId);
+          if (child) {
+            line(node.x, node.y, child.x, child.y);
+          }
+        });
+      });
+
+      // Draw nodes
+      nodes.forEach(node => {
+        fill(node.selected ? 'green' : 'white');
+        stroke(0);
+        ellipse(node.x, node.y, 50, 50);
+        fill(0);
+        noStroke();
+        textAlign(CENTER, CENTER);
+        text(node.label, node.x, node.y);
+      });
+    }
+
+    function mousePressed() {
+      let selectedNode = null;
+      nodes.forEach(node => {
+        let d = dist(mouseX, mouseY, node.x, node.y);
+        if (d < 25) {
+          selectedNode = node;
+          node.selected = !node.selected;
+          deselectChildren(node);
+        }
+      });
+
+      if (selectedNode) {
+        deselectSiblings(selectedNode);
+      }
+    }
+
+    function deselectChildren(node) {
+      node.children.forEach(childId => {
+        let child = nodes.find(n => n.id === childId);
+        if (child) {
+          child.selected = false;
+          deselectChildren(child);
+        }
+      });
+    }
+
+    function deselectSiblings(node) {
+      let siblings = nodes.filter(n => n !== node && node.parent === n.parent);
+      siblings.forEach(sibling => {
+        sibling.selected = false;
+        deselectChildren(sibling);
+      });
+    }
+  </script>
+</body>
+
+</html>
