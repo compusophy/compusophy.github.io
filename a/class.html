@@ -2,106 +2,151 @@
 <html>
 
 <head>
-  <title>Class and Spec Selection Tree with p5.js</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <title>Class and Spec Selection</title>
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    .decision-group {
+      margin-bottom: 20px;
+    }
+
+    .decision-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .decision-group button {
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+
+    .selected {
+      background-color: #4CAF50;
+      /* Green */
+      color: white;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: larger;
+      color: blue;
     }
   </style>
 </head>
 
 <body>
+
+  <h2>Class and Spec Selection</h2>
+
+  <div id="combatStyleGroup" class="decision-group">
+    <label>Combat Style:</label>
+    <button onclick="selectOption('combatStyle', 'Melee')">Melee</button>
+    <button onclick="selectOption('combatStyle', 'Ranged')">Ranged</button>
+  </div>
+
+  <div id="damageTypeGroup" class="decision-group">
+    <label>Damage Type:</label>
+    <button onclick="selectOption('damageType', 'Physical')">Physical</button>
+    <button onclick="selectOption('damageType', 'Magic')">Magic</button>
+  </div>
+
+  <div id="strategyGroup" class="decision-group">
+    <label>Strategy:</label>
+    <button onclick="selectOption('strategy', 'Burst')">Burst</button>
+    <button onclick="selectOption('strategy', 'Sustain')">Sustain</button>
+  </div>
+
+  <div id="classSpecGroup" class="decision-group">
+    <label>Class/Spec:</label>
+    <button onclick="autoSelect('Berserker')">Berserker</button>
+    <button onclick="autoSelect('Paladin')">Paladin</button>
+    <button onclick="autoSelect('Spellblade')">Spellblade</button>
+    <button onclick="autoSelect('Mystic Knight')">Mystic Knight</button>
+    <button onclick="autoSelect('Sharpshooter')">Sharpshooter</button>
+    <button onclick="autoSelect('Archer')">Archer</button>
+    <button onclick="autoSelect('Sorcerer')">Sorcerer</button>
+    <button onclick="autoSelect('Elementalist')">Elementalist</button>
+  </div>
+
+  <p id="result"></p>
+
   <script>
-    let nodes = [
-      {id: "root", label: "", x: 200, y: 50, selected: false, children: ["melee", "ranged"]},
-      {id: "melee", label: "Melee", x: 120, y: 150, selected: false, children: ["meleePhysical", "meleeMagic"]},
-      {id: "ranged", label: "Ranged", x: 280, y: 150, selected: false, children: ["rangedPhysical", "rangedMagic"]},
-      {id: "meleePhysical", label: "Physical", x: 60, y: 250, selected: false, children: ["meleePhysicalBurst", "meleePhysicalSustain"]},
-      {id: "meleeMagic", label: "Magic", x: 180, y: 250, selected: false, children: ["meleeMagicBurst", "meleeMagicSustain"]},
-      {id: "rangedPhysical", label: "Physical", x: 220, y: 250, selected: false, children: ["rangedPhysicalBurst", "rangedPhysicalSustain"]},
-      {id: "rangedMagic", label: "Magic", x: 340, y: 250, selected: false, children: ["rangedMagicBurst", "rangedMagicSustain"]},
-      {id: "meleePhysicalBurst", label: "Burst", x: 20, y: 350, selected: false, children: []},
-      {id: "meleePhysicalSustain", label: "Sustain", x: 100, y: 350, selected: false, children: []},
-      {id: "meleeMagicBurst", label: "Burst", x: 160, y: 350, selected: false, children: []},
-      {id: "meleeMagicSustain", label: "Sustain", x: 200, y: 350, selected: false, children: []},
-      {id: "rangedPhysicalBurst", label: "Burst", x: 200, y: 350, selected: false, children: []},
-      {id: "rangedPhysicalSustain", label: "Sustain", x: 240, y: 350, selected: false, children: []},
-      {id: "rangedMagicBurst", label: "Burst", x: 300, y: 350, selected: false, children: []},
-      {id: "rangedMagicSustain", label: "Sustain", x: 380, y: 350, selected: false, children: []}
-    ];
+    let selections = {
+      combatStyle: null,
+      damageType: null,
+      strategy: null
+    };
 
-    function setup() {
-      createCanvas(400, 400);
-    }
+    function selectOption(category, option) {
+      // Store the selection
+      selections[category] = option;
 
-    function draw() {
-      background(255);
-      drawTree();
-    }
+      // Update button styles
+      updateButtonStyles(category, option);
 
-    function drawTree() {
-      // Draw connections
-      stroke(0);
-      nodes.forEach(node => {
-        node.children.forEach(childId => {
-          let child = nodes.find(n => n.id === childId);
-          if (child) {
-            line(node.x, node.y, child.x, child.y);
-          }
-        });
-      });
-
-      // Draw nodes
-      nodes.forEach(node => {
-        fill(node.selected ? 'green' : 'white');
-        stroke(0);
-        ellipse(node.x, node.y, 50, 50);
-        fill(0);
-        noStroke();
-        textAlign(CENTER, CENTER);
-        text(node.label, node.x, node.y);
-      });
-    }
-
-    function mousePressed() {
-      let selectedNode = null;
-      nodes.forEach(node => {
-        let d = dist(mouseX, mouseY, node.x, node.y);
-        if (d < 25) {
-          selectedNode = node;
-          node.selected = !node.selected;
-          deselectChildren(node);
-        }
-      });
-
-      if (selectedNode) {
-        deselectSiblings(selectedNode);
+      // Determine and display the class/spec if all selections are made
+      if (selections.combatStyle && selections.damageType && selections.strategy) {
+        const classSpec = determineClassSpec();
+        document.getElementById("result").innerHTML = "Your class/spec: " + classSpec;
       }
     }
 
-    function deselectChildren(node) {
-      node.children.forEach(childId => {
-        let child = nodes.find(n => n.id === childId);
-        if (child) {
-          child.selected = false;
-          deselectChildren(child);
-        }
-      });
+    function autoSelect(classSpec) {
+      // Map each class/spec to its corresponding options
+      const mapping = {
+        'Berserker': ['Melee', 'Physical', 'Burst'],
+        'Paladin': ['Melee', 'Physical', 'Sustain'],
+        'Spellblade': ['Melee', 'Magic', 'Burst'],
+        'Mystic Knight': ['Melee', 'Magic', 'Sustain'],
+        'Sharpshooter': ['Ranged', 'Physical', 'Burst'],
+        'Archer': ['Ranged', 'Physical', 'Sustain'],
+        'Sorcerer': ['Ranged', 'Magic', 'Burst'],
+        'Elementalist': ['Ranged', 'Magic', 'Sustain']
+      };
+
+      if (mapping[classSpec]) {
+        selectOption('combatStyle', mapping[classSpec][0]);
+        selectOption('damageType', mapping[classSpec][1]);
+        selectOption('strategy', mapping[classSpec][2]);
+      }
     }
 
-    function deselectSiblings(node) {
-      let siblings = nodes.filter(n => n !== node && node.parent === n.parent);
-      siblings.forEach(sibling => {
-        sibling.selected = false;
-        deselectChildren(sibling);
-      });
+    function updateButtonStyles(category, selectedOption) {
+      let buttons = document.getElementById(category + 'Group').getElementsByTagName('button');
+      for (let button of buttons) {
+        if (button.textContent === selectedOption) {
+          button.classList.add('selected');
+        } else {
+          button.classList.remove('selected');
+        }
+      }
+    }
+
+    function determineClassSpec() {
+      const {combatStyle, damageType, strategy} = selections;
+
+      // Mapping of options to class/spec
+      if (combatStyle === "Melee" && damageType === "Physical" && strategy === "Burst") {
+        return "Berserker";
+      } else if (combatStyle === "Melee" && damageType === "Physical" && strategy === "Sustain") {
+        return "Paladin";
+      } else if (combatStyle === "Melee" && damageType === "Magic" && strategy === "Burst") {
+        return "Spellblade";
+      } else if (combatStyle === "Melee" && damageType === "Magic" && strategy === "Sustain") {
+        return "Mystic Knight";
+      } else if (combatStyle === "Ranged" && damageType === "Physical" && strategy === "Burst") {
+        return "Sharpshooter";
+      } else if (combatStyle === "Ranged" && damageType === "Physical" && strategy === "Sustain") {
+        return "Archer";
+      } else if (combatStyle === "Ranged" && damageType === "Magic" && strategy === "Burst") {
+        return "Sorcerer";
+      } else if (combatStyle === "Ranged" && damageType === "Magic" && strategy === "Sustain") {
+        return "Elementalist";
+      }
+
+      return "Class not found";
     }
   </script>
+
 </body>
 
 </html>
