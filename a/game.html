@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+
+<body>
+  <button id="archerMode">Archer Mode</button>
+  <button id="magicMode">Magic Wand Mode</button>
+
+  <script>
+    let mode = 'archer';
+    let bowEmoji, wandEmoji;
+    let projectiles = [];
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      bowEmoji = '🏹';
+      wandEmoji = '🪄';
+      textSize(32);
+      textAlign(CENTER, CENTER);
+
+      // Button setup
+      document.getElementById('archerMode').addEventListener('click', () => mode = 'archer');
+      document.getElementById('magicMode').addEventListener('click', () => mode = 'magic');
+    }
+
+    function draw() {
+      background(255);
+      handleCursor();
+      handleWeapon();
+      updateAndDisplayProjectiles();
+    }
+
+    function handleCursor() {
+      push();
+      translate(mouseX, mouseY);
+      textSize(24);
+      text(mode === 'archer' ? '🎯' : '🌟', 0, 0);
+      pop();
+    }
+
+    function handleWeapon() {
+      let weaponEmoji = mode === 'archer' ? bowEmoji : wandEmoji;
+      let weaponAngle = atan2(mouseY - height / 2, mouseX - width / 2);
+      if (mode === 'archer') {
+        weaponAngle += PI / 4; // Adjust for bow orientation
+      } else {
+        weaponAngle += PI / 4; // Adjust for wand orientation
+      }
+
+      push();
+      translate(width / 2, height / 2);
+      rotate(weaponAngle);
+      textSize(32);
+      text(weaponEmoji, 0, 0);
+      pop();
+    }
+
+    function mousePressed() {
+      let angle = atan2(mouseY - height / 2, mouseX - width / 2);
+      projectiles.push(new Projectile(width / 2, height / 2, angle, mode));
+    }
+
+    function updateAndDisplayProjectiles() {
+      for (let projectile of projectiles) {
+        projectile.update();
+        projectile.display();
+      }
+    }
+
+    class Projectile {
+      constructor(x, y, angle, type) {
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+        this.speed = 5;
+        this.type = type;
+      }
+
+      update() {
+        this.x += this.speed * cos(this.angle);
+        this.y += this.speed * sin(this.angle);
+      }
+
+      display() {
+        push();
+        translate(this.x, this.y);
+        rotate(this.angle + (this.type === 'magic' ? PI / 2 : 0));
+        textSize(this.type === 'magic' ? 20 : 32);
+        text(this.type === 'archer' ? '➵' : '★', 0, 0);
+        pop();
+      }
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    }
+  </script>
+</body>
+
+</html>
