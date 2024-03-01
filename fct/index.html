@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Follow Request to @compusophy</title>
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Submit Follow Request to @compusophy" />
+  <meta property="og:description" content="Make a request for @compusophy to follow another user on Farcaster." />
+  <meta property="og:image" content="URL_TO_AN_IMAGE_REPRESENTING_THE_PAGE" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="URL_TO_YOUR_FARCASTER_FRAME_PAGE" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0; /* Light grey background */
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50; /* Green */
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Make @compusophy Follow</h2>
+
+  <label for="fidInput">Enter FID:</label>
+  <input type="text" id="fidInput" name="fidInput" placeholder="FID">
+  <button id="submitButton">Submit Follow Request</button>
+
+  <script src="path/to/farcaster-sdk.js"></script> <!-- Include the Farcaster SDK -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('submitButton').addEventListener('click', function () {
+        const fid = document.getElementById('fidInput').value.trim();
+        if (fid) {
+          // Assuming the Farcaster SDK is properly initialized and authenticated
+          // Replace the fetch call with the appropriate SDK method to submit the follow request
+          alert('Follow request submitted for FID: ' + fid);
+          // Actual implementation to submit follow request goes here
+        } else {
+          alert('FID is required.');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
