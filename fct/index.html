@@ -32,14 +32,34 @@
 <body>
 
   <h2>Make @compusophy Follow</h2>
-  <p>Enter the FID of the user you want @compusophy to follow:</p>
 
-  <!-- The actual input and button are for visual representation in a browser and are managed by Farcaster in a frame environment -->
-  <input type="text" id="fidInput" placeholder="FID">
+  <input type="text" id="fidInput" name="fidInput" placeholder="Enter FID">
   <button id="submitButton">Submit Follow Request</button>
 
   <script>
-    // Your JavaScript for handling interactions when not in a Farcaster frame context
+    document.getElementById('submitButton').addEventListener('click', function () {
+      const fid = document.getElementById('fidInput').value;
+      if (fid) {
+        // Directly use Fetch API to interact with the Neynar API
+        fetch('https://api.neynar.com/v2/farcaster/user/follow', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'api_key': '96DF8866-B2A8-4C2F-8D93-9487246B1BB7', // Note: Exposing API keys client-side can be risky
+          },
+          body: JSON.stringify({
+            signer_uuid: '130f560f-c9c7-41ab-ba06-da8d1223f5ce',
+            target_fids: [1214, parseInt(fid)]
+          })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+      } else {
+        console.error('FID is required');
+      }
+    });
   </script>
 
 </body>
