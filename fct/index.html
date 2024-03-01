@@ -5,35 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Submit Follow Request to @compusophy</title>
 
-  <!-- Required Frame Properties -->
+  <!-- Farcaster Frame Metadata -->
   <meta property="fc:frame" content="vNext" />
   <meta property="fc:frame:image" content="https://res.cloudinary.com/merkle-manufactory/image/fetch/c_fill,f_jpg,w_168/https%3A%2F%2Fi.imgur.com%2FjBq0Qjl.jpg" />
   <meta property="og:image" content="https://res.cloudinary.com/merkle-manufactory/image/fetch/c_fill,f_jpg,w_168/https%3A%2F%2Fi.imgur.com%2FjBq0Qjl.jpg" />
-  
-  <!-- Optional Frame Properties for Interactive Elements -->
-  <meta property="fc:frame:button:1" content="Submit Request" />
-  <meta property="fc:frame:button:1:action" content="post" />
-  <meta property="fc:frame:post_url" content="URL_WHERE_FRAME_SERVER_WILL_HANDLE_POST_REQUEST" />
-  <meta property="fc:frame:input:text" content="Enter FID" />
 
   <style>
-    /* Styling for demonstration purposes */
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
+      background-color: #f0f0f0;
     }
     input, button {
       margin-top: 10px;
       padding: 10px;
       font-size: 16px;
     }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
 
   <h2>Make @compusophy Follow</h2>
-
-  <input type="text" id="fidInput" name="fidInput" placeholder="Enter FID">
+  <p>Enter the FID of the user you want @compusophy to follow:</p>
+  <input type="text" id="fidInput" placeholder="Enter FID">
   <button id="submitButton">Submit Follow Request</button>
 
   <script>
@@ -46,18 +49,24 @@
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'api_key': '96DF8866-B2A8-4C2F-8D93-9487246B1BB7', // Note: Exposing API keys client-side can be risky
+            'api_key': '96DF8866-B2A8-4C2F-8D93-9487246B1BB7', // Caution: Exposing API keys in client-side code is risky
           },
           body: JSON.stringify({
             signer_uuid: '130f560f-c9c7-41ab-ba06-da8d1223f5ce',
             target_fids: [1214, parseInt(fid)]
           })
         })
-        .then(response => response.json())
-        .then(data => console.log(data))
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => console.log('Success:', data))
         .catch(error => console.error('Error:', error));
       } else {
         console.error('FID is required');
+        alert('Please enter a valid FID.');
       }
     });
   </script>
