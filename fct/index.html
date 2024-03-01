@@ -5,58 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Submit Follow Request to @compusophy</title>
 
-  <!-- Farcaster Frame Metadata -->
-  <meta name="farcaster:version" content="1.0">
-  <meta name="farcaster:width" content="medium">
-  <meta name="farcaster:height" content="auto">
-  <meta name="farcaster:title" content="Follow Request">
-  <meta name="farcaster:description" content="Submit a follow request for @compusophy.">
+  <!-- Required Frame Properties -->
+  <meta property="fc:frame" content="vNext" />
+  <meta property="fc:frame:image" content="URL_TO_A_1.91:1_ASPECT_RATIO_IMAGE" />
+  <meta property="og:image" content="URL_TO_A_1.91:1_ASPECT_RATIO_IMAGE" />
+  
+  <!-- Optional Frame Properties for Interactive Elements -->
+  <meta property="fc:frame:button:1" content="Submit Request" />
+  <meta property="fc:frame:button:1:action" content="post" />
+  <meta property="fc:frame:post_url" content="URL_WHERE_FRAME_SERVER_WILL_HANDLE_POST_REQUEST" />
+  <meta property="fc:frame:input:text" content="Enter FID" />
 
   <style>
+    /* Styling for demonstration purposes */
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
       padding: 20px;
-      box-sizing: border-box;
     }
     input, button {
-      padding: 10px;
       margin-top: 10px;
-      margin-bottom: 10px;
-      width: calc(100% - 20px);
-      box-sizing: border-box;
-    }
-    button {
-      color: white;
-      background-color: #007bff;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
+      padding: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
   <h2>Make @compusophy Follow</h2>
+  <p>Enter the FID of the user you want @compusophy to follow:</p>
 
-  <div>
-    <input type="text" id="fidInput" name="fidInput" placeholder="Enter FID">
-    <button id="submitButton">Submit Follow Request</button>
-  </div>
+  <!-- The actual input and button are for visual representation in a browser and are managed by Farcaster in a frame environment -->
+  <input type="text" id="fidInput" placeholder="FID">
+  <button id="submitButton">Submit Follow Request</button>
 
   <script>
-    // Example functionality: Log input value on button click
-    document.getElementById('submitButton').addEventListener('click', function () {
-      const fid = document.getElementById('fidInput').value;
-      if (fid) {
-        console.log('Follow request submitted for FID:', fid);
-        // Implement the API request or other logic here
-      } else {
-        console.error('FID is required.');
-      }
-    });
+    // Your JavaScript for handling interactions when not in a Farcaster frame context
   </script>
 
 </body>
